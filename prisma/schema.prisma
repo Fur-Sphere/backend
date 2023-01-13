@@ -14,7 +14,7 @@ datasource db {
 model Waitlist {
   id         Int     @unique @default(autoincrement())
   name       String
-  email      String
+  email      String  @unique
   state      String
   city       String
   isPetOwner Boolean @default(false)

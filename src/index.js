@@ -1,9 +1,14 @@
-import express from 'express'
+import express, { json } from 'express'
 import 'dotenv/config'
+import { WaitListRouter } from './route/waitlist.js'
 
 const port = process.env.PORT || 8000
 
 const app = express()
+
+app.use(json())
+
+app.use('/waitlist', WaitListRouter)
 
 app.listen(port, (err) => {
 	if(err) {
