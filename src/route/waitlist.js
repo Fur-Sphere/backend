@@ -19,7 +19,7 @@ router.post('/', async (req, res, next) => {
 			}
 		})
 
-		res.json({
+		res.status(201).json({
 			message: 'Success',
 			newEntry
 		})

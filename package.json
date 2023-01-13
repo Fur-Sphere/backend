@@ -11,13 +11,14 @@
   "scripts": {
     "dev": "nodemon src",
     "start": "node src",
-		"prod:migrate": "prisma migrate deploy",
-		"dev:migrate": "prisma migrate dev",
-		"studio": "prisma studio",
-		"generate": "prisma generate"
+    "prod:migrate": "prisma migrate deploy",
+    "dev:migrate": "prisma migrate dev",
+    "studio": "prisma studio",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "4.8.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "prisma": "^4.8.1"

@@ -1,10 +1,17 @@
 import express, { json } from 'express'
 import 'dotenv/config'
 import { WaitListRouter } from './route/waitlist.js'
+import cors from 'cors'
 
 const port = process.env.PORT || 8000
 
+const corsOptions = {
+	origin: 'https://fursphere.com'
+}
+
 const app = express()
+
+app.use(cors(corsOptions))
 
 app.use(json())
 
