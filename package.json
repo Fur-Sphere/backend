@@ -10,7 +10,11 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src",
-    "start": "node src"
+    "start": "node src",
+		"prod:migrate": "prisma migrate deploy",
+		"dev:migrate": "prisma migrate dev",
+		"studio": "prisma studio",
+		"generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "4.8.1",
