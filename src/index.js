@@ -8,6 +8,12 @@ const app = express()
 
 app.use(json())
 
+app.get('/status', async (req, res, next) => {
+	res.json({
+		message: 'Server running'
+	})
+})
+
 app.use('/waitlist', WaitListRouter)
 
 app.listen(port, (err) => {
