@@ -11,13 +11,67 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+enum ProgressStatus {
+	UPCOMING
+	PENDING
+	COMPLETED
+}
+
 model Waitlist {
-  id         Int     @unique @default(autoincrement())
+  id         Int      @unique @default(autoincrement())
   name       String
-  email      String  @unique
+  email      String   @unique
   state      String
   city       String
-  isPetOwner Boolean @default(false)
-  isTrainer  Boolean @default(false)
-  isVet      Boolean @default(false)
+  isPetOwner Boolean  @default(false)
+  isTrainer  Boolean  @default(false)
+  isVet      Boolean  @default(false)
+  timestamp  DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  isTrainer Boolean  @default(false)
+  isVet     Boolean  @default(false)
+  profile   Profile?
+}
+
+model Profile {
+  id            String     @id @default(cuid())
+  name          String
+  profile_image String?
+  location      String
+  about         String?
+  userId        String  @unique
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+	pets					Pet[]
+}
+
+model Pet {
+	id String @id @default(cuid())
+	name String
+	about String?
+	breed String
+	dob DateTime
+	profile_image String?
+	parentId String
+	parent Profile @relation(fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model Vaccination {
+	id String @id @default(cuid())
+	name String
+	description String
+	date DateTime
+	status ProgressStatus @default(UPCOMING)
+}
+
+model Deworming {
+	id String @id @default(cuid())
+	name String
+	description String
+	date DateTime
+	status ProgressStatus @default(UPCOMING)
 }
